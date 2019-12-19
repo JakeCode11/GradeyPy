@@ -77,7 +77,6 @@ class course:
 
 if __name__ == '__main__':
     print("\n")
-
     newCourse = course()
     newCourse.addAssignType()
     newCourse.insertGrade()
