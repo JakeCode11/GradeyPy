@@ -20,6 +20,8 @@ class course:
         # Prompting user for assignment type
         newAssign.type = input("What is the assignment type? ")
 
+        print('-----------------------------------')
+
         if newAssign.type.lower() == 'final':
             self.dynamFinal = True if input("Does your final replace your lowest midterm grade? [y/n] ").lower() else False
 
@@ -35,7 +37,6 @@ class course:
                 newAssign.setDynamic(input("Is this assignment type dynamic? [y/n] "))
             if newAssign.evenDist != True and newAssign.dynamic != True:
                 newAssign.setStagger(input("Is this assignement type staggered? [y/n] "))
-
             # Initalizing the Assignment type in the dictionary with its
             # respective assignement count
             self.assignDict[newAssign.type] = newAssign
@@ -57,13 +58,21 @@ class course:
 
     # *TODO: Change for in menu to just take the input from the menu and not enter full assigntype*
     def insertGrade(self):
+        print('-----------------------------------')
         assignType = input("Assignment type for inserting grade: ")
-        self.assignDict[assignType].addGrade(int(input("What assignment number is this? ")))
+        if assignType not in self.assignDict:
+            print("Error: This Assignment type does not exit..Returning to Menu\n")
+        else:
+            self.assignDict[assignType].addGrade(int(input("What assignment number is this? ")))
 
     # *TODO: Change for in menu to just take the input from the menu and not enter full assigntype*
     def changeGrade(self):
+        print('-----------------------------------')
         assignType = input("Assignment type for changing grade: ")
-        self.assignDict[assignType].changeGrade(int(input("What assignment number is this? ")))
+        if assignType not in self.assignDict:
+            print("Error: This Assignment type does not exit..Returning to Menu\n")
+        else:
+            self.assignDict[assignType].changeGrade(int(input("What assignment number is this? ")))
 
 
 if __name__ == '__main__':
@@ -74,15 +83,15 @@ if __name__ == '__main__':
     newCourse.insertGrade()
     newCourse.changeGrade()
 
-    print("----------BASIC INFO---------")
+    print("\n----------BASIC INFO---------")
     print(newCourse.assignDict['Quiz'].type)
     print(newCourse.assignDict['Quiz'].numAssigns)
     print(newCourse.assignDict['Quiz'].gradeList)
-    print("----------ASSIGNTYPE TOGGLES---------")
+    print("\n----------ASSIGNTYPE TOGGLES---------")
     print(newCourse.assignDict['Quiz'].evenDist)
     print(newCourse.assignDict['Quiz'].dynamic)
     print(newCourse.assignDict['Quiz'].staggered)
-    print("----------WEIGHTS---------")
+    print("\n----------WEIGHTS---------")
     print(newCourse.assignDict['Quiz'].ovrWeight)
     print(newCourse.assignDict['Quiz'].gradeWeights)
 

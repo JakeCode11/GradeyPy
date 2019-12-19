@@ -19,21 +19,24 @@ class assignment:
     # Variable for even distrib grading
     evenDist = False
 
-    # Initializes all values in gradeList to 0
+    # Initializes all values in gradeList to None
     def setGradeList(self):
         for x in range(0, self.numAssigns):
-            self.gradeList.append(0)
+            self.gradeList.append(None)
 
     # Adding a new grade in for the first time
     def addGrade(self, assignNum):
-        if self.gradeList[assignNum-1] == 0:
+        if self.gradeList[assignNum-1] == None:
             self.gradeList[assignNum-1] = round(int(input("Grade received? (i.e 50=50%) "))/100, 2)
         else:
             print("There's a grade already for this assignment. Maybe you meant change grade?")
 
     # Changing an already established grade
     def changeGrade(self, assignNum):
-        self.gradeList[assignNum-1] = round(int(input("Change Grade to? (i.e 50=50%) "))/100, 2)
+        if self.gradeList[assignNum-1] == None:
+            print("Error: You cannot change a grade that hasn't been set yet..Returning to menu\n")
+        else:
+            self.gradeList[assignNum-1] = round(int(input("Change Grade to? (i.e 50=50%) "))/100, 2)
 
     # Initializes value of evenDist to user's preference
     def setevenDist(self, inpTog):
