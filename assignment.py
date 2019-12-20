@@ -19,6 +19,9 @@ class assignment:
     # Variable for even distrib grading
     evenDist = False
 
+    # Variable for dynamic Final grading
+    dynamFinal = False
+
     # Initializes all values in gradeList to None
     def setGradeList(self):
         for x in range(0, self.numAssigns):
