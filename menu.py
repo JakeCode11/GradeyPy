@@ -32,7 +32,9 @@ def mainMenu():
             curGrade()
         elif userInp == '6':
             saveData()
-            # endFlag = True;
+            endFlag = True;
+        elif userInp == 'L':
+            loadData()
 
 def createCourse():
     newCourse = course()
@@ -106,10 +108,10 @@ def loadData():
     file = open('data.json')
     savedCourses = json.load(file)
     for item in savedCourses:
-        loadCourse(savedCourses[item].coursename, savedCourses[item].dynamFinal)
-        for asgnType in savedCourses[item].assignDict:
-            loadAsgnType(savedCourses[item].coursename, savedCourses[item][asgnType].type)
-            loadGrade(savedCourses[item].coursename, savedCourses[item][asgnType].type)
+        loadCourse(savedCourses[item]['coursename'], savedCourses[item]['dynamFinal'])
+        for asgnType in savedCourses[item]['assignDict']:
+            loadAsgnType(savedCourses[item]['coursename'], savedCourses[item]['assignDict'][asgnType]['type'])
+            # loadGrade(savedCourses[item]['coursename'], savedCourses[item][asgnType]['type'])
 
 
 def loadCourse(coursename, dynamFinal):
