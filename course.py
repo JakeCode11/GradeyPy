@@ -7,18 +7,17 @@ from assignment import assignment as asgn
 
 class course:
     # Defining course variables
-    coursename = ''
-    dynamFinal = False
-    # Initializing assignDictionary to store different assignment types
-    # Quizzes, class assignments,
-    assignDict = {}
+    def __init__(self, cname = '', dynamFinal = False):
+        self.coursename = cname
+        self.dynamFinal = dynamFinal
+        self.assignDict = {}
 
-    def addAssignType(self):
+    def addAssignType(self, userInput):
         # Initializing new assignment object
         newAssign = asgn()
 
         # Prompting user for assignment type
-        newAssign.type = input("What is the assignment type? ")
+        newAssign.type = userInput
 
         print('-----------------------------------')
 
@@ -57,9 +56,8 @@ class course:
             newAssign.ovrWeight = int(input("How much does the final weigh: "))/100.00
 
     # *TODO: Change for in menu to just take the input from the menu and not enter full assigntype*
-    def insertGrade(self):
-        print('-----------------------------------')
-        assignType = input("Assignment type for inserting grade: ")
+    def insertGrade(self, userInp):
+        assignType = userInp
         if assignType not in self.assignDict:
             print("Error: This Assignment type does not exit..Returning to Menu\n")
         else:
