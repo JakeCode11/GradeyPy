@@ -71,6 +71,8 @@ def curGrade():
         print(courseList[item].coursename)
         for asgnType in courseList[item].assignDict:
             print(courseList[item].assignDict[asgnType].type)
+            print(courseList[item].assignDict[asgnType].gradeList)
+            print(courseList[item].assignDict[asgnType].gradeWeights)
         print('\n')
 
 def saveData():
@@ -121,7 +123,7 @@ def loadCourse(coursename, dynamFinal):
 def loadAsgnType(coursename, asgnType):
     if coursename in courseList:
         courseList[coursename].addAssignType(asgnType)
-        courseList[coursename].
+        # courseList[coursename].
     else:
         print("ERROR: The course you entered does not exist")
 
