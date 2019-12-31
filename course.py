@@ -13,13 +13,9 @@ class course:
         self.assignDict = {}
 
     def addAssignType(self, userInput):
-        # Initializing new assignment object
+        # Initializing new assignment object and assignment type
         newAssign = asgn()
-
-        # Prompting user for assignment type
         newAssign.type = userInput
-
-        print('-----------------------------------')
 
         if newAssign.type.lower() == 'final':
             self.dynamFinal = True if input("Does your final replace your lowest midterm grade? [y/n] ").lower() else False
@@ -55,6 +51,24 @@ class course:
             self.assignDict[newAssign.type] = newAssign
             newAssign.ovrWeight = int(input("How much does the final weigh: "))/100.00
 
+    def loadAssignType(self, asgnType, numAssigns, ovrWeight, finalExamGrade,
+                    gradeList, dynamic, gradeWeights, staggered,
+                    evenDist, dynamFinal):
+        loadedAssign = asgn()
+        loadedAssign.type = asgnType
+        loadedAssign.numAssigns = numAssigns
+        loadedAssign.ovrWeight = ovrWeight
+        loadedAssign.finalExamGrade = finalExamGrade
+        loadedAssign.gradeList = gradeList
+        loadedAssign.dynamic = dynamic
+        print("Grade Weights: " + str(gradeWeights))
+        loadedAssign.gradeWeights = gradeWeights
+        print("Grade Weights: " + str(loadedAssign.gradeWeights))
+        loadedAssign.staggered = staggered
+        loadedAssign.evenDist = evenDist
+        loadedAssign.dynamFinal = dynamFinal
+        self.assignDict[loadedAssign.type] = loadedAssign
+
     # *TODO: Change for in menu to just take the input from the menu and not enter full assigntype*
     def insertGrade(self, userInp):
         assignType = userInp
@@ -73,29 +87,29 @@ class course:
             self.assignDict[assignType].changeGrade(int(input("What assignment number is this? ")))
 
 
-if __name__ == '__main__':
-    print("\n")
-    newCourse = course()
-    newCourse.addAssignType()
-    newCourse.insertGrade()
-    newCourse.changeGrade()
-
-    print("\n----------BASIC INFO---------")
-    print(newCourse.assignDict['Quiz'].type)
-    print(newCourse.assignDict['Quiz'].numAssigns)
-    print(newCourse.assignDict['Quiz'].gradeList)
-    print("\n----------ASSIGNTYPE TOGGLES---------")
-    print(newCourse.assignDict['Quiz'].evenDist)
-    print(newCourse.assignDict['Quiz'].dynamic)
-    print(newCourse.assignDict['Quiz'].staggered)
-    print("\n----------WEIGHTS---------")
-    print(newCourse.assignDict['Quiz'].ovrWeight)
-    print(newCourse.assignDict['Quiz'].gradeWeights)
-
-
-    # print(newCourse.assignDict['Final'].type)
-    # print(newCourse.assignDict['Final'].numAssigns)
-    # print(newCourse.assignDict['Final'].gradeList)
-    # print(newCourse.assignDict['Final'].dynamic)
-    # print(newCourse.assignDict['Final'].ovrWeight)
-    # print(newCourse.assignDict['Final'].gradeWeights)
+# if __name__ == '__main__':
+#     print("\n")
+#     newCourse = course()
+#     newCourse.addAssignType()
+#     newCourse.insertGrade()
+#     newCourse.changeGrade()
+#
+#     print("\n----------BASIC INFO---------")
+#     print(newCourse.assignDict['Quiz'].type)
+#     print(newCourse.assignDict['Quiz'].numAssigns)
+#     print(newCourse.assignDict['Quiz'].gradeList)
+#     print("\n----------ASSIGNTYPE TOGGLES---------")
+#     print(newCourse.assignDict['Quiz'].evenDist)
+#     print(newCourse.assignDict['Quiz'].dynamic)
+#     print(newCourse.assignDict['Quiz'].staggered)
+#     print("\n----------WEIGHTS---------")
+#     print(newCourse.assignDict['Quiz'].ovrWeight)
+#     print(newCourse.assignDict['Quiz'].gradeWeights)
+#
+#
+#     print(newCourse.assignDict['Final'].type)
+#     print(newCourse.assignDict['Final'].numAssigns)
+#     print(newCourse.assignDict['Final'].gradeList)
+#     print(newCourse.assignDict['Final'].dynamic)
+#     print(newCourse.assignDict['Final'].ovrWeight)
+#     print(newCourse.assignDict['Final'].gradeWeights)
