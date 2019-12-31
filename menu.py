@@ -104,9 +104,6 @@ def saveData():
     with open('data.json', 'w') as file:
         json.dump(saveCourses, file)
 
-
-# **TODO** FINISH OFF THE LOADING FROM THE JSON ************
-
 def loadData():
     file = open('data.json')
     savedCourses = json.load(file)
@@ -131,17 +128,12 @@ def loadCourse(coursename, dynamFinal):
     courseList[newCourse.coursename] = newCourse
     courseList[newCourse.coursename].dynamFinal = dynamFinal
 
-
-# **TODO** Load in the variables for assignment
 def loadAsgnType(coursename, asgnType, numAssigns, ovrWeight, finalExamGrade,
                 gradeList, dynamic, gradeWeights, staggered,
                 evenDist, dynamFinal):
-    if coursename in courseList:
-        courseList[coursename].loadAssignType(asgnType, numAssigns, ovrWeight, finalExamGrade,
-                                            gradeList, dynamic, gradeWeights, staggered,
-                                            evenDist, dynamFinal)
-    else:
-        print("ERROR: The course you entered does not exist")
+    courseList[coursename].loadAssignType(asgnType, numAssigns, ovrWeight, finalExamGrade,
+                                        gradeList, dynamic, gradeWeights, staggered,
+                                        evenDist, dynamFinal)
 
 
 def printAllData():
