@@ -66,18 +66,9 @@ def changeGrade():
     else:
         print("ERROR: The course you entered does not exist")
 
-# TODO: Add algorithm to calculate grades
-# Temp: Print out all the data stored in courseList
+# TODO: Add algorithm to calculate grades (based on dynamic, staggered, or evenDist)
 def curGrade():
-    print(courseList)
 
-    for item in courseList:
-        print(courseList[item].coursename)
-        for asgnType in courseList[item].assignDict:
-            print(courseList[item].assignDict[asgnType].type)
-            print(courseList[item].assignDict[asgnType].gradeList)
-            print(courseList[item].assignDict[asgnType].gradeWeights)
-        print('\n')
 
 def saveData():
     saveCourses = {}
@@ -134,7 +125,6 @@ def loadAsgnType(coursename, asgnType, numAssigns, ovrWeight, finalExamGrade,
     courseList[coursename].loadAssignType(asgnType, numAssigns, ovrWeight, finalExamGrade,
                                         gradeList, dynamic, gradeWeights, staggered,
                                         evenDist, dynamFinal)
-
 
 def printAllData():
     for item in courseList:

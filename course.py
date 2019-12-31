@@ -69,7 +69,6 @@ class course:
         loadedAssign.dynamFinal = dynamFinal
         self.assignDict[loadedAssign.type] = loadedAssign
 
-    # *TODO: Change for in menu to just take the input from the menu and not enter full assigntype*
     def insertGrade(self, userInp):
         assignType = userInp
         if assignType not in self.assignDict:
@@ -85,31 +84,3 @@ class course:
             print("Error: This Assignment type does not exit..Returning to Menu\n")
         else:
             self.assignDict[assignType].changeGrade(int(input("What assignment number is this? ")))
-
-
-# if __name__ == '__main__':
-#     print("\n")
-#     newCourse = course()
-#     newCourse.addAssignType()
-#     newCourse.insertGrade()
-#     newCourse.changeGrade()
-#
-#     print("\n----------BASIC INFO---------")
-#     print(newCourse.assignDict['Quiz'].type)
-#     print(newCourse.assignDict['Quiz'].numAssigns)
-#     print(newCourse.assignDict['Quiz'].gradeList)
-#     print("\n----------ASSIGNTYPE TOGGLES---------")
-#     print(newCourse.assignDict['Quiz'].evenDist)
-#     print(newCourse.assignDict['Quiz'].dynamic)
-#     print(newCourse.assignDict['Quiz'].staggered)
-#     print("\n----------WEIGHTS---------")
-#     print(newCourse.assignDict['Quiz'].ovrWeight)
-#     print(newCourse.assignDict['Quiz'].gradeWeights)
-#
-#
-#     print(newCourse.assignDict['Final'].type)
-#     print(newCourse.assignDict['Final'].numAssigns)
-#     print(newCourse.assignDict['Final'].gradeList)
-#     print(newCourse.assignDict['Final'].dynamic)
-#     print(newCourse.assignDict['Final'].ovrWeight)
-#     print(newCourse.assignDict['Final'].gradeWeights)

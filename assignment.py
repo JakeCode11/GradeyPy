@@ -1,26 +1,27 @@
 class assignment:
-    type = ''
-    numAssigns = 0
-    ovrWeight = 0
-    finalExamGrade = 0
-    gradeList = []
+    def __init__(self):
+        self.type = ''
+        self.numAssigns = 0
+        self.ovrWeight = 0
+        self.finalExamGrade = 0
+        self.gradeList = []
 
-    # For what-if grading
-    tempGradeList = []
+        # For what-if grading
+        self.tempGradeList = []
 
-    # Variables are for dynamic grading only
-    dynamic = False
-    gradeListSorted = []
-    gradeWeights = []
+        # Variables are for dynamic grading only
+        self.dynamic = False
+        self.gradeListSorted = []
+        self.gradeWeights = []
 
-    # Variable for staggered grading
-    staggered = False
+        # Variable for staggered grading
+        self.staggered = False
 
-    # Variable for even distrib grading
-    evenDist = False
+        # Variable for even distrib grading
+        self.evenDist = False
 
-    # Variable for dynamic Final grading
-    dynamFinal = False
+        # Variable for dynamic Final grading
+        self.dynamFinal = False
 
     # Initializes all values in gradeList to None
     def setGradeList(self):
