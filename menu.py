@@ -35,6 +35,8 @@ def mainMenu():
             endFlag = True;
         elif userInp == 'L':
             loadData()
+        elif userInp == 'P':
+            printAllData()
 
 def createCourse():
     newCourse = course()
@@ -89,6 +91,7 @@ def saveData():
             saveCourses[item]['assignDict'][asgnType] = {}
             saveCourses[item]['assignDict'][asgnType]['type'] = courseList[item].assignDict[asgnType].type
             saveCourses[item]['assignDict'][asgnType]['numAssigns'] = courseList[item].assignDict[asgnType].numAssigns
+            saveCourses[item]['assignDict'][asgnType]['ovrWeight'] = courseList[item].assignDict[asgnType].ovrWeight
             saveCourses[item]['assignDict'][asgnType]['finalExamGrade'] = courseList[item].assignDict[asgnType].finalExamGrade
             saveCourses[item]['assignDict'][asgnType]['gradeList'] = courseList[item].assignDict[asgnType].gradeList
             saveCourses[item]['assignDict'][asgnType]['tempGradeList'] = courseList[item].assignDict[asgnType].tempGradeList
@@ -110,9 +113,17 @@ def loadData():
     for item in savedCourses:
         loadCourse(savedCourses[item]['coursename'], savedCourses[item]['dynamFinal'])
         for asgnType in savedCourses[item]['assignDict']:
-            loadAsgnType(savedCourses[item]['coursename'], savedCourses[item]['assignDict'][asgnType]['type'])
-            # loadGrade(savedCourses[item]['coursename'], savedCourses[item][asgnType]['type'])
-
+            loadAsgnType(savedCourses[item]['coursename'],
+                        savedCourses[item]['assignDict'][asgnType]['type'],
+                        savedCourses[item]['assignDict'][asgnType]['numAssigns'],
+                        savedCourses[item]['assignDict'][asgnType]['ovrWeight'],
+                        savedCourses[item]['assignDict'][asgnType]['finalExamGrade'],
+                        savedCourses[item]['assignDict'][asgnType]['gradeList'],
+                        savedCourses[item]['assignDict'][asgnType]['dynamic'],
+                        savedCourses[item]['assignDict'][asgnType]['gradeWeights'],
+                        savedCourses[item]['assignDict'][asgnType]['staggered'],
+                        savedCourses[item]['assignDict'][asgnType]['evenDist'],
+                        savedCourses[item]['assignDict'][asgnType]['dynamFinal'])
 
 def loadCourse(coursename, dynamFinal):
     newCourse = course()
@@ -122,21 +133,36 @@ def loadCourse(coursename, dynamFinal):
 
 
 # **TODO** Load in the variables for assignment
-def loadAsgnType(coursename, asgnType):
+def loadAsgnType(coursename, asgnType, numAssigns, ovrWeight, finalExamGrade,
+                gradeList, dynamic, gradeWeights, staggered,
+                evenDist, dynamFinal):
     if coursename in courseList:
-        courseList[coursename].addAssignType(asgnType)
-        # courseList[coursename].
-    else:
-        print("ERROR: The course you entered does not exist")
-
-# **TODO** Load in the grades from the arrays
-def loadGrade(coursename, grade):
-    if coursename in courseList:
-        courseList[coursename].insertGrade(grade)
+        courseList[coursename].loadAssignType(asgnType, numAssigns, ovrWeight, finalExamGrade,
+                                            gradeList, dynamic, gradeWeights, staggered,
+                                            evenDist, dynamFinal)
     else:
         print("ERROR: The course you entered does not exist")
 
 
+def printAllData():
+    for item in courseList:
+        print("Course name: " + str(courseList[item].coursename))
+        print("Dynam Final: " + str(courseList[item].dynamFinal))
+        print("Assign Dictionary: " + str(courseList[item].assignDict))
+        for asgnType in courseList[item].assignDict:
+            print("Type: "+ str(courseList[item].assignDict[asgnType].type))
+            print("Num Assigns: " + str(courseList[item].assignDict[asgnType].numAssigns))
+            print("Overall weight: "+ str(courseList[item].assignDict[asgnType].ovrWeight))
+            print("Final Grade: "+ str(courseList[item].assignDict[asgnType].finalExamGrade))
+            print("GradeList: "+ str(courseList[item].assignDict[asgnType].gradeList))
+            print("tempGradeList: "+ str(courseList[item].assignDict[asgnType].tempGradeList))
+            print("Dynamic: "+ str(courseList[item].assignDict[asgnType].dynamic))
+            print("gradeWeights: "+ str(courseList[item].assignDict[asgnType].gradeWeights))
+            print("Staggered: "+ str(courseList[item].assignDict[asgnType].staggered))
+            print("Evendist: "+ str(courseList[item].assignDict[asgnType].evenDist))
+            print("DynamFinal: "+ str(courseList[item].assignDict[asgnType].dynamFinal))
+            print("\n")
+        print("\n")
 
 if __name__ == '__main__':
     mainMenu()
