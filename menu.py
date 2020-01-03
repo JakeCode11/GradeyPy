@@ -68,6 +68,29 @@ def changeGrade():
 
 # TODO: Add algorithm to calculate grades (based on dynamic, staggered, or evenDist)
 def curGrade():
+    for item in courseList:
+        for asgnType in courseList[item].assignDict:
+            totalSum = 0
+            tempWeight = 0
+            gradedAsgnCount = 0
+            gradeMultWeight = 0
+            tempObject = courseList[item].assignDict[asgnType]
+            if tempObject.dynamic == True:
+                print("Yeet1 param")
+            elif tempObject.staggered == True:
+                print("Yeet2 Param")
+            else:
+                for grade in tempObject.gradeList:
+                    if grade != None:
+                        totalSum += grade
+                        tempWeight += tempObject.gradeWeights[gradedAsgnCount]
+                        gradeMultWeight += grade*tempObject.gradeWeights[gradedAsgnCount]
+                        gradedAsgnCount += 1
+                    else:
+                        continue
+                        
+                if tempWeight > 0:
+                    print(str(asgnType) + " Grade is: " + str((gradeMultWeight/tempWeight)*100) + "%")
 
 
 def saveData():
