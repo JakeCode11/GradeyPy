@@ -61,9 +61,7 @@ class course:
         loadedAssign.finalExamGrade = finalExamGrade
         loadedAssign.gradeList = gradeList
         loadedAssign.dynamic = dynamic
-        print("Grade Weights: " + str(gradeWeights))
         loadedAssign.gradeWeights = gradeWeights
-        print("Grade Weights: " + str(loadedAssign.gradeWeights))
         loadedAssign.staggered = staggered
         loadedAssign.evenDist = evenDist
         loadedAssign.dynamFinal = dynamFinal
