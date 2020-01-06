@@ -67,7 +67,7 @@ def changeGrade():
         print("ERROR: The course you entered does not exist")
 
 # TODO: Add algorithm to calculate grades (based on dynamic, staggered, or evenDist)
-def curGrade():
+# def curGrade():
 
 
 def saveData():
