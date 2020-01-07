@@ -88,7 +88,7 @@ def curGrade():
                         gradedAsgnCount += 1
                     else:
                         continue
-                        
+
                 if tempWeight > 0:
                     print(str(asgnType) + " Grade is: " + str((gradeMultWeight/tempWeight)*100) + "%")
 
