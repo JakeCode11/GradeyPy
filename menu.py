@@ -32,7 +32,7 @@ def mainMenu():
             curGrade()
         elif userInp == '6':
             saveData()
-            endFlag = True;
+            endFlag = True
         elif userInp == 'L':
             loadData()
         elif userInp == 'P':
