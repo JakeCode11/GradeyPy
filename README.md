@@ -16,3 +16,7 @@ Bugs to fix/features to implement in upcoming version:
 
  
  Vers 2.0: A simple program grade calculator that allows users to calculate their grades for different classes in a UI environment 
+![](images/loginPage.png)
+
+
+![](images/mainMenu.png)
