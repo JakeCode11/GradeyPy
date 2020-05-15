@@ -8,4 +8,11 @@ Performs the following:
 - Considers if final has a dynamic grade
 - Allows for what-if grading and calculates grade based off new input
  
- Vers 2.0: TBD
+Bugs to fix/features to implement in upcoming version:
+- Re-work grade calculation
+- Implement GPA (College-level GPA) predictor
+- Login System
+- Foundational UI
+
+ 
+ Vers 2.0: A simple program grade calculator that allows users to calculate their grades for different classes in a UI environment 
