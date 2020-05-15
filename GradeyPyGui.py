@@ -1,14 +1,11 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'GradeyPygui.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+import login as lg
+import mainMenu as mm
 
+# Global variables
+username = ''
+password = ''
+pageMngr = None
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -36,6 +33,7 @@ class Ui_MainWindow(object):
         self.LoginPage.setObjectName("LoginPage")
         self.gridLayout = QtWidgets.QGridLayout(self.LoginPage)
         self.gridLayout.setObjectName("gridLayout")
+        
         self.pwordInput = QtWidgets.QLineEdit(self.LoginPage)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -50,8 +48,10 @@ class Ui_MainWindow(object):
         self.pwordInput.setAlignment(QtCore.Qt.AlignCenter)
         self.pwordInput.setObjectName("pwordInput")
         self.gridLayout.addWidget(self.pwordInput, 5, 2, 1, 1)
+        
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout.addItem(spacerItem, 1, 3, 1, 1)
+        
         self.exitBtn = QtWidgets.QPushButton(self.LoginPage)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -60,7 +60,9 @@ class Ui_MainWindow(object):
         self.exitBtn.setSizePolicy(sizePolicy)
         self.exitBtn.setStyleSheet("background-color: white")
         self.exitBtn.setObjectName("exitBtn")
+        self.exitBtn.clicked.connect(QtCore.QCoreApplication.instance().quit)
         self.gridLayout.addWidget(self.exitBtn, 9, 2, 1, 1)
+        
         self.loginBtn = QtWidgets.QPushButton(self.LoginPage)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -69,7 +71,9 @@ class Ui_MainWindow(object):
         self.loginBtn.setSizePolicy(sizePolicy)
         self.loginBtn.setStyleSheet("background-color: white")
         self.loginBtn.setObjectName("loginBtn")
+        self.loginBtn.clicked.connect(lambda: lg.getCredentials(self.getuname(), self.getpword(), self.getpageManager(), self.getwelcomelbl()))
         self.gridLayout.addWidget(self.loginBtn, 8, 2, 1, 1)
+        
         spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout.addItem(spacerItem1, 0, 2, 1, 1)
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -86,6 +90,7 @@ class Ui_MainWindow(object):
         self.unameInput.setObjectName("unameInput")
         self.gridLayout.addWidget(self.unameInput, 2, 2, 2, 1)
         self.appTitle = QtWidgets.QLabel(self.LoginPage)
+        
         font = QtGui.QFont()
         font.setFamily("Agency FB")
         font.setPointSize(24)
@@ -98,6 +103,7 @@ class Ui_MainWindow(object):
         self.appTitle.setAlignment(QtCore.Qt.AlignCenter)
         self.appTitle.setObjectName("appTitle")
         self.gridLayout.addWidget(self.appTitle, 1, 2, 1, 1)
+       
         spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem3, 1, 4, 1, 1)
         spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
@@ -105,6 +111,7 @@ class Ui_MainWindow(object):
         spacerItem5 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout.addItem(spacerItem5, 1, 1, 1, 1)
         self.stackedWidget.addWidget(self.LoginPage)
+        
         self.MenuPage = QtWidgets.QWidget()
         self.MenuPage.setObjectName("MenuPage")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.MenuPage)
@@ -145,10 +152,10 @@ class Ui_MainWindow(object):
         self.curGradeBtn.setStyleSheet("background-color: white;")
         self.curGradeBtn.setObjectName("curGradeBtn")
         self.verticalLayout.addWidget(self.curGradeBtn)
-        self.pushButton_5 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_5.setStyleSheet("background-color: white;")
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.verticalLayout.addWidget(self.pushButton_5)
+        self.logoutBtn = QtWidgets.QPushButton(self.frame)
+        self.logoutBtn.setStyleSheet("background-color: white;")
+        self.logoutBtn.setObjectName("logoutBtn")
+        self.verticalLayout.addWidget(self.logoutBtn)
         self.gridLayout_3.addWidget(self.frame, 2, 0, 1, 1)
         self.stackedWidget.addWidget(self.MenuPage)
         self.gridLayout_2.addWidget(self.stackedWidget, 1, 0, 1, 1)
@@ -156,6 +163,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
+
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -172,14 +180,16 @@ class Ui_MainWindow(object):
         self.addGradeBtn.setText(_translate("MainWindow", "Add Grade"))
         self.changeGradeBtn.setText(_translate("MainWindow", "Change Grade"))
         self.curGradeBtn.setText(_translate("MainWindow", "Current Grades"))
-        self.pushButton_5.setText(_translate("MainWindow", "Logout"))
+        self.logoutBtn.setText(_translate("MainWindow", "Logout"))
 
+    def getuname(self):
+        return self.unameInput.text()
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+    def getpword(self):
+        return self.pwordInput.text()
+    
+    def getwelcomelbl(self):
+        return self.welcomeLabel
+    
+    def getpageManager(self):
+        return self.stackedWidget
