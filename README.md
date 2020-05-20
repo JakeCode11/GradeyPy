@@ -23,3 +23,6 @@
 
 ### Main Menu:
 <img src="images/mainMenu.PNG" width= "600" height = "400">
+
+### Add Course page:
+<img src="images/AddCourse.PNG" width= "600" height="400">
