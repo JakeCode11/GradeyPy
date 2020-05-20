@@ -156,6 +156,7 @@ class Ui_MainWindow(object):
         self.logoutBtn.setStyleSheet("background-color: white;")
         self.logoutBtn.setObjectName("logoutBtn")
         self.verticalLayout.addWidget(self.logoutBtn)
+
         self.gridLayout_3.addWidget(self.frame, 2, 0, 1, 1)
         self.stackedWidget.addWidget(self.MenuPage)
         self.gridLayout_2.addWidget(self.stackedWidget, 1, 0, 1, 1)
